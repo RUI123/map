@@ -22,24 +22,26 @@ package maptest;
  *
  * @author xhf
  */
+import java.io.*;
+import java.sql.*;
+import java.util.Random;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.geometry.Insets;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import java.util.Random;
-import java.sql.*;
-import static javafx.application.Application.launch;
-import java.io.*;
 
 
 public class MapTest extends Application {
@@ -70,10 +72,19 @@ public class MapTest extends Application {
     //initializeDB();
    
       //initialize variables
-     blockArray = new GridPane[blockNum];
+      Button b1;
+      BorderPane borderPane = new BorderPane();
       
+      BorderPane p1=new BorderPane (b1=new Button("kk"));
+      
+     blockArray = new GridPane[blockNum];
+      borderPane.setCenter(p1);
     //Initialize user interface   
-    BorderPane borderPane = new BorderPane();
+   
+  b1.setOnAction(e->{
+        
+    
+    borderPane.getChildren().remove(p1);
     borderPane.setTop(getTop());
     borderPane.setRight(getRight());
     borderPane.setBottom(getBottom());
@@ -82,12 +93,14 @@ public class MapTest extends Application {
            blockArray[location2%30].setStyle("-fx-background-color: #33cc33;");
     borderPane.setCenter(getCenter());
     borderPane.setStyle("-fx-background-color: #FFFFFF;");
-  
+    
+    });
+    
     //btEnlarge.setOnAction(new EnlargeHandler());
    //
     
     // Create a scene and place it in the stage
-    Scene scene = new Scene(borderPane);
+    Scene scene = new Scene(borderPane,1000,700);
     primaryStage.setTitle("Game"); // Set the stage title
     primaryStage.setScene(scene); // Place the scene in the stage
     primaryStage.show(); // Display the stage   
